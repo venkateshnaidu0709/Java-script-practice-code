@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      .main{
+        background-color: green;
+        height: 40%;
+        width: 40%;
+        align-items: center;
+       justify-content: center;
+       display: flex;
+        flex-direction: column;
+        border-radius: 25px;
+      }
+      .second{
+        padding: 18px;
+        border-radius: 12px;
+        cursor: pointer;
+      }
+      body{
+        display: flex;
+       align-items: center;
+       justify-content: center;
+       height: 100vh;
+
+      }
+    </style>
+</head>
+<body>
+  <div  class="main">
+        <div class="time">
+    <h1 id="timeshow"> 00:00:00:0000</h1>
+   </div>
+          <div >
+    <button class="second" id="start">START</button>
+    <button class="second" id="pause">PAUSE</button>
+    <button class="second" id="reset">RESET</button>
+   </div>
+   </div>
+ </body>
+ <script>
+  let milliseconds=0,seconds=0,minutes=0,hours=0;
+  let timeshow=document.getElementById('timeshow');
+  let timeref
+  document.getElementById('start').onclick=function(){
+    timeref=setInterval(updateTime,10)
+  }
+  function updateTime(){
+    milliseconds=milliseconds+10;
+    if(milliseconds==1000){
+      seconds=seconds+1;
+      milliseconds=0;
+      if(seconds==60){
+        minutes=minutes+1;
+        seconds=0;
+        if(minutes==60){
+          hours=hours+1;
+          minutes=0;
+        }
+      }
+    }
+    let h,m,s,ms;
+if(hours<10){
+h='0'+hours
+}else{
+  h=hours
+}if(minutes<10){
+m='0'+minutes
+}else{
+m=minutes
+}
+if(seconds<10){
+s='0'+seconds
+}else{
+ s=seconds
+}
+if(milliseconds<10){
+ms='00'+milliseconds
+}
+else if(milliseconds<100){
+ms='0'+milliseconds
+}
+else{
+  ms=milliseconds
+}
+timeshow.innerHTML=`${h} : ${m} : ${s} :${ms}`
+  }
+  document.getElementById("pause").onclick=function(){
+    clearInterval(timeref);
+  }
+  document.getElementById("reset").onclick=function(){
+    clearInterval(timeref);
+    milliseconds=0;
+    seconds=0;
+    minutes=0;
+    hours=0;
+    timeshow.innerHTML="00:00:00:000";
+  }
+  </script>
+</html>
