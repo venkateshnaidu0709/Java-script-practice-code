@@ -1,0 +1,68 @@
+<html>
+<head> 
+<style>
+.calc{
+width:30%;
+height:20%;
+border:2px solid blue;
+padding:100px;
+border-radius:15px;
+background-image:url('c.jpg');
+text-align:center;
+
+}
+
+input{
+width:82%;
+height:30px;
+border-radius:5px;
+text-align:right;
+}
+button{
+width:20%;
+height:19px;
+margin-left:3px;
+margin-bottom:10px;
+}
+</style>
+</head>
+<body>
+<div class="calc">
+<input type="text"id="input"/><br/>
+<script>
+txt="";
+function clicked(val){
+if(val=="="){
+txt=eval(txt);
+document.getElementById("input").value=txt;
+}
+else if(val=="AC"){
+txt="";
+document.getElementById("input").value=txt;
+}
+else if(val=="del"){
+txt="";
+document.getElementById("input").value=txt;
+}
+else if(val=="^"){
+txt=txt+"^";
+document.getElementById("input").value=txt;
+}
+
+else{
+txt=txt+val;
+document.getElementById("input").value=txt;
+}
+}
+data="";
+btns=['7','8','9','+','4','5','6','-','1','2','3','*','AC','0','=','/','del','^','%','history'];
+for(i=0;i<20;i++){
+if(i%4==0)
+data+="<br/>";
+data+="<button value='"+btns[i]+"'onclick='clicked (this.value)'>"+btns[i]+"</button>";
+}
+document.write(data);
+</script>
+</div>
+</body>
+</html>
